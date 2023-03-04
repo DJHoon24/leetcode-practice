@@ -1,17 +1,19 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
+        stack = [] # Create stack with List
         for char in s:
             if (char == '(' or char == '{' or char == '['):
-                stack.append(char)
+                stack.append(char) # Add to stack
+            elif not stack: # If stack is empty when seeing a closing bracket, not valid
+                return False
             elif char == ')':
-                if not stack or stack.pop() != '(':
+                if stack.pop() != '(':
                     return False
             elif char == '}':
-                if not stack or stack.pop() != '{':
+                if stack.pop() != '{':
                     return False
             elif char == ']':
-                if not stack or stack.pop() != '[':
+                if stack.pop() != '[':
                     return False
         
         return not stack
